@@ -10,6 +10,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip deathSound;
+    [SerializeField] static int sceneCounter = 0;
+    const int maxLEVEL = 4 - 1;
 
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
@@ -53,6 +55,14 @@ public class Rocket : MonoBehaviour
     private void StartSuccessSequence()
     {
         state = State.Transcending;
+        if (sceneCounter == maxLEVEL)
+        {
+            sceneCounter = 0;
+        }
+        else
+        {
+            sceneCounter++;
+        }
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         Invoke("LoadNextScene", 1.5f);
@@ -60,6 +70,7 @@ public class Rocket : MonoBehaviour
     private void StartDeathSequence()
     {
         state = State.Dying;
+        sceneCounter = 0;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         Invoke("LoadFirstLevel", 2f);
@@ -67,12 +78,12 @@ public class Rocket : MonoBehaviour
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(sceneCounter);
     }
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(1); // todo allow more than two levels
+        SceneManager.LoadScene(sceneCounter); // todo allow more than two levels
     }
 
     private void RespondToThrustInput()
