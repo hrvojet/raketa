@@ -24,6 +24,8 @@ public class Rocket : MonoBehaviour
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
 
+    bool CollisionsDisabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,16 +37,26 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(state == State.Alive)
+        if (state == State.Alive)
         {
             RespondToThrustInput();
             RespondToRotateInput();
         }
+        if(Debug.isDebugBuild) // checking if debug methods will be available in final build
+        {
+            RespondToDebugKeys();
+        }
+    }
+
+    private void RespondToDebugKeys()
+    {
+        RespondToNextLevelInput();
+        ToggleColisionDetection();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(state != State.Alive) { return; }
+        if(state != State.Alive || CollisionsDisabled) { return; }
 
         switch (collision.gameObject.tag)
         {
@@ -62,15 +74,7 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
-        state = State.Transcending;
-        if (sceneCounter == maxLEVEL)
-        {
-            sceneCounter = 0;
-        }
-        else
-        {
-            sceneCounter++;
-        }
+        state = State.Transcending;        
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
@@ -93,6 +97,14 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextScene()
     {
+        if (sceneCounter == maxLEVEL)
+        {
+            sceneCounter = 0;
+        }
+        else
+        {
+            sceneCounter++;
+        }
         SceneManager.LoadScene(sceneCounter); // todo allow more than two levels
     }
 
@@ -135,5 +147,21 @@ public class Rocket : MonoBehaviour
         }
 
         rigidBody.freezeRotation = false; // resume physics control rotation
+    }
+
+    private void RespondToNextLevelInput()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextScene();
+        }
+    }
+
+    private void ToggleColisionDetection()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            CollisionsDisabled = !CollisionsDisabled;
+        }
     }
 }
