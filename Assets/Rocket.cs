@@ -5,12 +5,20 @@ public class Rocket : MonoBehaviour
 {
     Rigidbody rigidBody;
     AudioSource audioSource;
-    [SerializeField] float mainThrust = 50f;
+    [SerializeField] float mainThrust = 35f;
     [SerializeField] float rcsThrust = 200f;
+    [SerializeField] float LoadLevelTime = 2f;
+
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip deathSound;
+
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem deathParticles;
+
     [SerializeField] static int sceneCounter = 0;
+    // dynamic level counter, always change wehn adding or removing levels
     const int maxLEVEL = 4 - 1;
 
     enum State { Alive, Dying, Transcending};
@@ -65,7 +73,8 @@ public class Rocket : MonoBehaviour
         }
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
-        Invoke("LoadNextScene", 1.5f);
+        successParticles.Play();
+        Invoke("LoadNextScene", LoadLevelTime);
     }
     private void StartDeathSequence()
     {
@@ -73,7 +82,8 @@ public class Rocket : MonoBehaviour
         sceneCounter = 0;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
-        Invoke("LoadFirstLevel", 2f);
+        deathParticles.Play();
+        Invoke("LoadFirstLevel", LoadLevelTime);
     }
 
     private void LoadFirstLevel()
@@ -95,6 +105,7 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
+            mainEngineParticles.Stop();
         }
     }
 
@@ -105,6 +116,7 @@ public class Rocket : MonoBehaviour
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        mainEngineParticles.Play();
     }
 
     private void RespondToRotateInput()
