@@ -19,7 +19,7 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] static int sceneCounter = 0;
     // dynamic level counter, always change wehn adding or removing levels
-    const int maxLEVEL = 4 - 1;
+    const int maxLEVEL = 5 - 1;
 
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
