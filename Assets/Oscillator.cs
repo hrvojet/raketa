@@ -8,6 +8,7 @@ public class Oscillator : MonoBehaviour
 {
 
     [SerializeField] Vector3 movementVector = new Vector3(10f, 10f, 10f);
+    Vector3 offsetVector = new Vector3(0f, 0f, 0f);
     [SerializeField] float period = 2f;
 
     [Range(1,20)][SerializeField] float movementFactor; //0 not moved, 1 fully moved
@@ -29,10 +30,10 @@ public class Oscillator : MonoBehaviour
         const float tau = (float)Math.PI * 2;
         float rawSinWave = Mathf.Sin(cycles * tau); // goes from -1 to +1
 
-        print("rawSinWave: " + rawSinWave + " cycles: " + cycles);
+        //print("rawSinWave: " + rawSinWave + " cycles: " + cycles);
 
         movementFactor = rawSinWave / 2f + 0.5f;
-        Vector3 offset = movementFactor * movementVector;
-        transform.position = offset + startingPos;
+        offsetVector = movementFactor * movementVector;
+        transform.position = offsetVector + startingPos;
     }
 }

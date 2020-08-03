@@ -17,10 +17,6 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
 
-    [SerializeField] static int sceneCounter = 0;
-    // dynamic level counter, always change wehn adding or removing levels
-    const int maxLEVEL = 5 - 1;
-
     enum State { Alive, Dying, Transcending};
     State state = State.Alive;
 
@@ -83,7 +79,6 @@ public class Rocket : MonoBehaviour
     private void StartDeathSequence()
     {
         state = State.Dying;
-        sceneCounter = 0;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
@@ -92,20 +87,18 @@ public class Rocket : MonoBehaviour
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(sceneCounter);
+        SceneManager.LoadScene(0);
     }
 
     private void LoadNextScene()
     {
-        if (sceneCounter == maxLEVEL)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = ++currentSceneIndex;
+        if (SceneManager.sceneCountInBuildSettings == nextSceneIndex)
         {
-            sceneCounter = 0;
+            nextSceneIndex = 0;
         }
-        else
-        {
-            sceneCounter++;
-        }
-        SceneManager.LoadScene(sceneCounter); // todo allow more than two levels
+        SceneManager.LoadScene(nextSceneIndex); // todo allow more than two levels
     }
 
     private void RespondToThrustInput()
@@ -116,9 +109,14 @@ public class Rocket : MonoBehaviour
         }
         else
         {
-            audioSource.Stop();
-            mainEngineParticles.Stop();
+            StopApplyingThrust();
         }
+    }
+
+    private void StopApplyingThrust()
+    {
+        audioSource.Stop();
+        mainEngineParticles.Stop();
     }
 
     private void ApplyThrust()
@@ -133,19 +131,20 @@ public class Rocket : MonoBehaviour
 
     private void RespondToRotateInput()
     {
-        rigidBody.freezeRotation = true; // take manual control of rotation
-        
-        float rotationThisFrame = rcsThrust * Time.deltaTime;
-
         if (Input.GetKey(KeyCode.A))
-        {            
-            transform.Rotate(Vector3.forward * rotationThisFrame);
+        {
+            RotateManually(rcsThrust * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-Vector3.forward * rotationThisFrame);
-        }
+            RotateManually(-rcsThrust * Time.deltaTime);
+        }        
+    }
 
+    private void RotateManually(float rotationThisFrame)
+    {
+        rigidBody.freezeRotation = true; // take manual control of rotation
+        transform.Rotate(Vector3.forward * rotationThisFrame);
         rigidBody.freezeRotation = false; // resume physics control rotation
     }
 
