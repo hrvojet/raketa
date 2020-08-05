@@ -23,27 +23,27 @@ public class Rocket : MonoBehaviour
 
     bool CollisionsDisabled = false;
 
-    int target = 60;
+    int fpsTarget = 60;
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        rocketSound = GetComponent<AudioSource>();
-        rocketSound.loop = true;
-        rocketSound.Play();
+        //rocketSound = GetComponent<AudioSource>();
+        //rocketSound.loop = true;
+        //rocketSound.Play();
 
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = target;
+        Application.targetFrameRate = fpsTarget;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Application.targetFrameRate != target)
+        if (Application.targetFrameRate != fpsTarget)
         {
-            Application.targetFrameRate = target;
+            Application.targetFrameRate = fpsTarget;
         }
 
         if (state == State.Alive)
@@ -85,7 +85,6 @@ public class Rocket : MonoBehaviour
     {
         state = State.Transcending;        
         audioSource.Stop();
-        audioSource.volume = 1f;
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
         Invoke("LoadNextScene", LoadLevelTime);
@@ -94,7 +93,6 @@ public class Rocket : MonoBehaviour
     {
         state = State.Dying;
         audioSource.Stop();
-        audioSource.volume = 1f;
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
         Invoke("LoadFirstLevel", LoadLevelTime);
@@ -131,17 +129,17 @@ public class Rocket : MonoBehaviour
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-        rocketSound.volume = 1f;
+        //rocketSound.volume = 1f;
         if (!audioSource.isPlaying)
         {
-            //audioSource.PlayOneShot(mainEngine);
+            audioSource.PlayOneShot(mainEngine);
         }
         mainEngineParticles.Play();
     }
     private void StopApplyingThrust()
     {
-        rocketSound.volume = 0f;
-        //audioSource.Stop();
+        //rocketSound.volume = 0f;
+        audioSource.Stop();
         mainEngineParticles.Stop();
     }
 
