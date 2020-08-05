@@ -22,17 +22,25 @@ public class Rocket : MonoBehaviour
 
     bool CollisionsDisabled = false;
 
+    int target = 60;
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = target;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Application.targetFrameRate != target)
+        {
+            Application.targetFrameRate = target;
+        }
+
         if (state == State.Alive)
         {
             RespondToThrustInput();

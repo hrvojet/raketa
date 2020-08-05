@@ -251,7 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 20, z: 0}
-  period: 9
+  period: 18
+  timeDelay: 0
   movementFactor: 1
 --- !u!1001 &54075788
 PrefabInstance:
@@ -484,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVector: {x: 0.16, y: 0.94, z: 0.2}
   period: 9.14
+  timeDelay: 0
   movementFactor: 0.033406585
 --- !u!1001 &586711717
 PrefabInstance:
@@ -1285,7 +1287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 20, z: 0}
-  period: 9
+  period: 18
+  timeDelay: 2
   movementFactor: 1
 --- !u!1001 &1685341468
 PrefabInstance:
@@ -1629,7 +1632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 20, z: 0}
-  period: 9
+  period: 18
+  timeDelay: 4
   movementFactor: 1
 --- !u!4 &2058412426 stripped
 Transform:
