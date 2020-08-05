@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent] // allows only one script per game object
-public class Oscillator : MonoBehaviour
+public class WaveOscillator : MonoBehaviour
 {
 
-    [SerializeField] Vector3 movementVector = new Vector3(10f, 10f, 10f);
+    [SerializeField] Vector3 movementVector = new Vector3(0f, 10f, 0f);
     Vector3 offsetVector = new Vector3(0f, 0f, 0f);
     [SerializeField] float period = 2f;
     [SerializeField] float timeDelay = 0f; // delay too make wave effect
@@ -24,14 +23,13 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Invoke("UpdateMovement", timeDelay);
         UpdateMovement();
     }
 
     private void UpdateMovement()
     {
         if (period <= Mathf.Epsilon) { period = 1; } // protect from devide by zero
-        float cycles = Time.time / period; // grows constantly from 0
+        float cycles = Time.time + timeDelay / period; // grows constantly from 0
 
         const float tau = (float)Math.PI * 2;
         float rawSinWave = Mathf.Sin(cycles * tau); // goes from -1 to +1
