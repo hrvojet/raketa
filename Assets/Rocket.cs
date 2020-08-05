@@ -5,6 +5,7 @@ public class Rocket : MonoBehaviour
 {
     Rigidbody rigidBody;
     AudioSource audioSource;
+    AudioSource rocketSound;
     [SerializeField] float mainThrust = 35f;
     [SerializeField] float rcsThrust = 200f;
     [SerializeField] float LoadLevelTime = 2f;
@@ -28,6 +29,10 @@ public class Rocket : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        rocketSound = GetComponent<AudioSource>();
+        rocketSound.loop = true;
+        rocketSound.Play();
+
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = target;
 
@@ -121,20 +126,21 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void StopApplyingThrust()
-    {
-        audioSource.Stop();
-        mainEngineParticles.Stop();
-    }
-
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        rocketSound.volume = 1f;
         if (!audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(mainEngine);
+            //audioSource.PlayOneShot(mainEngine);
         }
         mainEngineParticles.Play();
+    }
+    private void StopApplyingThrust()
+    {
+        rocketSound.volume = 0f;
+        //audioSource.Stop();
+        mainEngineParticles.Stop();
     }
 
     private void RespondToRotateInput()

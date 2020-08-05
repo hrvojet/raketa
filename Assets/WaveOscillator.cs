@@ -29,12 +29,10 @@ public class WaveOscillator : MonoBehaviour
     private void UpdateMovement()
     {
         if (period <= Mathf.Epsilon) { period = 1; } // protect from devide by zero
-        float cycles = Time.time + timeDelay / period; // grows constantly from 0
+        float cycles = (Time.time / period) - timeDelay; // grows constantly from 0
 
         const float tau = (float)Math.PI * 2;
         float rawSinWave = Mathf.Sin(cycles * tau); // goes from -1 to +1
-
-        //print("rawSinWave: " + rawSinWave + " cycles: " + cycles);
 
         movementFactor = rawSinWave / 2f + 0.5f;
         offsetVector = movementFactor * movementVector;
