@@ -30,6 +30,7 @@ public class WaveOscillator : MonoBehaviour
     {
         if (period <= Mathf.Epsilon) { period = 1; } // protect from devide by zero
         float cycles = (Time.time / period) - timeDelay; // grows constantly from 0
+        print(cycles);
 
         const float tau = (float)Math.PI * 2;
         float rawSinWave = Mathf.Sin(cycles * tau); // goes from -1 to +1
