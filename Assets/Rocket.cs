@@ -115,7 +115,7 @@ public class Rocket : MonoBehaviour
     }
 
     private void RespondToThrustInput()
-    {        
+    {
         if (Input.GetKey(KeyCode.Space))
         {
             ApplyThrust();
@@ -152,7 +152,7 @@ public class Rocket : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             RotateManually(-rcsThrust * Time.deltaTime);
-        }        
+        }
     }
 
     private void RotateManually(float rotationThisFrame)
