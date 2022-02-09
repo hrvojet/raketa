@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using GameEnum;
+using RocketGameLevelManager;
 
 public class Rocket : MonoBehaviour
 {
@@ -83,11 +83,11 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
-        state = RocketState.Transcending;        
+        state = RocketState.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
-        Invoke("LoadNextScene", LoadLevelTime);
+        Invoke("LoadNextLevel", LoadLevelTime);
     }
     private void StartDeathSequence()
     {
@@ -95,23 +95,17 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
-        Invoke("LoadFirstLevel", LoadLevelTime);
+        Invoke("ResetGame", LoadLevelTime);
     }
 
-    private void LoadFirstLevel()
+    private void ResetGame()
     {
-        SceneManager.LoadScene(0);
+        GameLoader.LoadFirstLevel();
     }
 
-    private void LoadNextScene()
+    private void LoadNextLevel()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = ++currentSceneIndex;
-        if (SceneManager.sceneCountInBuildSettings == nextSceneIndex)
-        {
-            nextSceneIndex = 0;
-        }
-        SceneManager.LoadScene(nextSceneIndex); // todo allow more than two levels
+        GameLoader.LoadNextScene();
     }
 
     private void RespondToThrustInput()
@@ -166,7 +160,7 @@ public class Rocket : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
-            LoadNextScene();
+            LoadNextLevel();
         }
     }
 
