@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using GameEnum;
 
 public class Rocket : MonoBehaviour
 {
@@ -17,9 +18,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
-
-    enum State { Alive, Dying, Transcending};
-    State state = State.Alive;
+    
+    RocketState state = GameEnum.RocketState.Alive;
 
     bool CollisionsDisabled = false;
 
@@ -46,7 +46,7 @@ public class Rocket : MonoBehaviour
             Application.targetFrameRate = fpsTarget;
         }
 
-        if (state == State.Alive)
+        if (state == RocketState.Alive)
         {
             RespondToThrustInput();
             RespondToRotateInput();
@@ -65,7 +65,7 @@ public class Rocket : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(state != State.Alive || CollisionsDisabled) { return; }
+        if(state != RocketState.Alive || CollisionsDisabled) { return; }
 
         switch (collision.gameObject.tag)
         {
@@ -83,7 +83,7 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
-        state = State.Transcending;        
+        state = RocketState.Transcending;        
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
@@ -91,7 +91,7 @@ public class Rocket : MonoBehaviour
     }
     private void StartDeathSequence()
     {
-        state = State.Dying;
+        state = RocketState.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
