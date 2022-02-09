@@ -5,11 +5,6 @@ namespace RocketGameLevelManager
 {
     public class GameLoader: MonoBehaviour
     {
-
-        public static void StartGame()
-        {
-            SceneManager.LoadScene(1);
-        }
         public static void LoadFirstLevel()
         {
             SceneManager.LoadScene(1);
@@ -21,6 +16,5 @@ namespace RocketGameLevelManager
             int nextSceneIndex = ++currentSceneIndex;
             SceneManager.LoadScene(nextSceneIndex);
         }
-        
     }
 }

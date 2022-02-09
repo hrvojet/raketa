@@ -8,6 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        GameLoader.StartGame();
+        GameLoader.LoadFirstLevel();
     }
 }
