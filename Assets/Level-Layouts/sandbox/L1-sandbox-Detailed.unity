@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obsticle (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3741616320422550428, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed64114af1d5cdb44aee0e3c7a05e0dd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!4 &115293387 stripped
@@ -241,20 +246,6 @@ MonoBehaviour:
   period: 20
   timeDelay: 0
   movementFactor: 0.014537632
---- !u!64 &179874544
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179874535}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: d03d0c597bb388947bf16f564153364a, type: 3}
 --- !u!4 &213833730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3741616320422550402, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
@@ -436,14 +427,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 44f9d629006bb76409d3626dd82797c0, type: 2}
+      objectReference: {fileID: 2100000, guid: 8ebcd04ce3779eb40afb77de9d2d70c7, type: 2}
     - target: {fileID: 3741616320422550431, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: d03d0c597bb388947bf16f564153364a, type: 3}
-    m_RemovedComponents:
-    - {fileID: 3741616320422550429, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!4 &492891397 stripped
 Transform:
@@ -773,6 +763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obsticle (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3741616320422550428, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed64114af1d5cdb44aee0e3c7a05e0dd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!108 &705507994 stripped
@@ -895,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 2364122939162983119, guid: d04f24c28c733464e82fe039f7538b39,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2364122939162983119, guid: d04f24c28c733464e82fe039f7538b39,
         type: 3}
@@ -1031,6 +1026,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obsticle (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3741616320422550428, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8b147ebabc6ebb40a24fce2337b5216, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!4 &1173197944 stripped
@@ -1080,7 +1080,7 @@ Transform:
   - {fileID: 492891397}
   - {fileID: 213833730}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1311962996
 MeshRenderer:
@@ -1290,6 +1290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obsticle
       objectReference: {fileID: 0}
+    - target: {fileID: 3741616320422550428, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ebcd04ce3779eb40afb77de9d2d70c7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!4 &1454058291 stripped
@@ -1470,7 +1475,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ed64114af1d5cdb44aee0e3c7a05e0dd, type: 2}
+      objectReference: {fileID: 2100000, guid: c42033df01b100747b44cb446b677e11, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!1001 &1855147021
@@ -1870,6 +1875,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obsticle (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 3741616320422550428, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ebcd04ce3779eb40afb77de9d2d70c7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cec25c6f8ae9f54c9fcd0390c61ed29, type: 3}
 --- !u!1001 &3845704776948067393
@@ -2116,6 +2126,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: baf1681aef84ec941a8e73e750c85917, type: 2}
+      objectReference: {fileID: 2100000, guid: f5337e5e1f5ff3a4a847d581d7f68d34, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad36fa05dbaf5ba469410ab006265082, type: 3}
