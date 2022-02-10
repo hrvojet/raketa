@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using GameEnum;
 using RocketGameLevelManager;
 
@@ -87,6 +88,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
+        rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         Invoke("LoadNextLevel", LoadLevelTime);
     }
     private void StartDeathSequence()
