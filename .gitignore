@@ -5,6 +5,9 @@
 #Idea IDE
 .idea/
 
+# Downloaded assets
+/Assets/Resources/AssetPacks/
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
