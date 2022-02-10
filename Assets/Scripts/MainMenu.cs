@@ -10,4 +10,10 @@ public class MainMenu : MonoBehaviour
     {
         GameLoader.LoadFirstLevel();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    
 }
