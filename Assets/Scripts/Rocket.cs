@@ -82,6 +82,19 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("I'm in");
+        other.GetComponent<Renderer>().enabled = false;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("I'mma head out");
+        
+        other.GetComponent<Renderer>().enabled = true;
+    }
+
     private void StartSuccessSequence()
     {
         state = RocketState.Transcending;
