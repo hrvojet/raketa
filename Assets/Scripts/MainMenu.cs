@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         GameLoader.LoadFirstLevel();
+        Cursor.visible = false;
     }
 
     public void QuitGame()
