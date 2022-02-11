@@ -10,6 +10,18 @@ namespace RocketGameLevelManager
             SceneManager.LoadScene(1);
         }
 
+        public static void ResetGame(bool gotToken)
+        {
+            if (gotToken)
+            {
+                SceneManager.LoadScene(4);
+            }
+            else
+            {
+                LoadFirstLevel();
+            }
+        }
+
         public static void LoadNextScene()
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

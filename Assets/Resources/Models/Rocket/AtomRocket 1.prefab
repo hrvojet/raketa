@@ -787,6 +787,7 @@ MonoBehaviour:
   mainEngine: {fileID: 8300000, guid: 720b0e8d15d50314db7c56a883fb0aed, type: 3}
   successSound: {fileID: 8300000, guid: 855358d1bdce1e94db87b0560e0d5bc4, type: 3}
   deathSound: {fileID: 8300000, guid: caf83afe035236842bda561b5f0ee68a, type: 3}
+  hiddenChamberSound: {fileID: 8300000, guid: 95ae3c262a80b8b47aa2310e614f7752, type: 3}
   mainEngineParticles: {fileID: 793946266329208021}
   successParticles: {fileID: 1643233145525533771}
   deathParticles: {fileID: 4962685245088916020}

@@ -2,12 +2,17 @@
 using UnityEngine;
 using GameEnum;
 using RocketGameLevelManager;
+using UnityEngine.Audio;
+using CheckpointStorage;
 
 public class Rocket : MonoBehaviour
 {
     Rigidbody rigidBody;
+    
     AudioSource audioSource;
     AudioSource rocketSound;
+    AudioSource chamberSound;
+    
     [SerializeField] float mainThrust = 35f;
     [SerializeField] float rcsThrust = 200f;
     [SerializeField] float LoadLevelTime = 2f;
@@ -15,6 +20,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip successSound;
     [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip hiddenChamberSound;
+    private bool _hiddenChamberDiscovered;
 
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem successParticles;
@@ -30,7 +37,8 @@ public class Rocket : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        //rocketSound = GetComponent<AudioSource>();
+        rocketSound = GetComponent<AudioSource>();
+        chamberSound = GetComponent<AudioSource>();
         //rocketSound.loop = true;
         //rocketSound.Play();
 
@@ -82,17 +90,29 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // hidden chamber
     {
-        Debug.Log("I'm in");
-        other.GetComponent<Renderer>().enabled = false;
+        switch (other.gameObject.tag)
+        {
+            
+            case "HiddenPath":
+                other.GetComponent<Renderer>().enabled = false;
+                break;
+            case "Token":
+                CreateCheckpoint(other);
+                break;
+        }
+        
+        
+        //chamberSound.PlayOneShot(hiddenChamberSound, 0.9f); // TODO fix hidden chamber entrance sound
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("I'mma head out");
-        
-        other.GetComponent<Renderer>().enabled = true;
+        if (other.gameObject.CompareTag("HiddenPath"))
+        {
+            other.GetComponent<Renderer>().enabled = true;
+        }
     }
 
     private void StartSuccessSequence()
@@ -112,10 +132,17 @@ public class Rocket : MonoBehaviour
         deathParticles.Play();
         Invoke("ResetGame", LoadLevelTime);
     }
+    
+    private void CreateCheckpoint(Collider other)
+    {
+        other.gameObject.SetActive(false);
+        Token.IsTokenCollected = true;
+        Debug.Log("Checkpoint created");
+    }
 
     private void ResetGame()
     {
-        GameLoader.LoadFirstLevel();
+        GameLoader.ResetGame(Token.IsTokenCollected);
     }
 
     private void LoadNextLevel()
