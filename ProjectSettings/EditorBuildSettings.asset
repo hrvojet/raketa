@@ -33,6 +33,6 @@ EditorBuildSettings:
     path: Assets/Level-Layouts/level-8/L8.unity
     guid: 767ca0ee1ac314a4a8be259599cdbaf2
   - enabled: 1
-    path: Assets/End.unity
+    path: Assets/Ending/End.unity
     guid: 8cca90ff76aa9ce47badb4ea9ba03eea
   m_configObjects: {}
