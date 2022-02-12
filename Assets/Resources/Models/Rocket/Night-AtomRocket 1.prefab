@@ -355,6 +355,7 @@ MonoBehaviour:
   mainEngine: {fileID: 8300000, guid: 720b0e8d15d50314db7c56a883fb0aed, type: 3}
   successSound: {fileID: 8300000, guid: 855358d1bdce1e94db87b0560e0d5bc4, type: 3}
   deathSound: {fileID: 8300000, guid: caf83afe035236842bda561b5f0ee68a, type: 3}
+  hiddenChamberSound: {fileID: 0}
   mainEngineParticles: {fileID: 8645134079918142248}
   successParticles: {fileID: 7651872634004200374}
   deathParticles: {fileID: 4045351388781266377}
@@ -1015,7 +1016,7 @@ Light:
   m_Color: {r: 0.9245283, g: 0.9027234, b: 0.9027234, a: 1}
   m_Intensity: 8.8
   m_Range: 20
-  m_SpotAngle: 72
+  m_SpotAngle: 36
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
