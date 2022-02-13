@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using CheckpointStorage;
+using RocketGameLevelManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,6 +47,7 @@ public class PauseMenu : MonoBehaviour
     {
         // TODO why resetting the time here does not save it when switching tom main menu scene?
         // GameLoader.SetPreservedTime(0f);
+        Token.IsTokenCollected = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
