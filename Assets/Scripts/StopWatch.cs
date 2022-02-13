@@ -43,7 +43,6 @@ namespace StopwatchTime
 
         private void OnDestroy()
         {
-            Debug.Log("Scene from stopwatch script: " + SceneManager.GetActiveScene().buildIndex);
             GameLoader.SetPreservedTime(currentTime);
         }
     }

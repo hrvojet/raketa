@@ -43,6 +43,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        // TODO why resetting the time here does not save it when switching tom main menu scene?
+        // GameLoader.SetPreservedTime(0f);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }

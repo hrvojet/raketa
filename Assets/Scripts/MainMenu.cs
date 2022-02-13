@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,11 @@ using RocketGameLevelManager;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        GameLoader.SetPreservedTime(0f);
+    }
+
     public void PlayGame()
     {
         GameLoader.LoadFirstLevel();
