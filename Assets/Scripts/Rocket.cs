@@ -4,6 +4,7 @@ using GameEnum;
 using RocketGameLevelManager;
 using UnityEngine.Audio;
 using CheckpointStorage;
+using StopwatchTime;
 
 public class Rocket : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem deathParticles;
     
     RocketState state = GameEnum.RocketState.Alive;
+    private GameObject stopwatch;
 
     bool CollisionsDisabled = false;
 
@@ -41,6 +43,7 @@ public class Rocket : MonoBehaviour
         chamberSound = GetComponent<AudioSource>();
         //rocketSound.loop = true;
         //rocketSound.Play();
+        stopwatch = GameObject.Find("Stopwatch");
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = fpsTarget;
@@ -79,7 +82,6 @@ public class Rocket : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Friendly":
-                print("Friendly");
                 break;
             case "Finish":
                 StartSuccessSequence();
@@ -126,6 +128,7 @@ public class Rocket : MonoBehaviour
     }
     private void StartDeathSequence()
     {
+        Destroy(stopwatch);
         state = RocketState.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
@@ -137,12 +140,12 @@ public class Rocket : MonoBehaviour
     {
         other.gameObject.SetActive(false);
         Token.IsTokenCollected = true;
-        Debug.Log("Checkpoint created");
+        GameLoader.SetPreservedTimeForToken(stopwatch.GetComponent<StopWatch>().GetCurrentStopwatchTime());
     }
 
     private void ResetGame()
     {
-        GameLoader.ResetGame(Token.IsTokenCollected);
+        GameLoader.ResetGame();
     }
 
     private void LoadNextLevel()

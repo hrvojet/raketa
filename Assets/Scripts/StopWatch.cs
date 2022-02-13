@@ -41,6 +41,11 @@ namespace StopwatchTime
             stopWatchActive = false;
         }
 
+        public float GetCurrentStopwatchTime()
+        {
+            return this.currentTime;
+        }
+
         private void OnDestroy()
         {
             GameLoader.SetPreservedTime(currentTime);
