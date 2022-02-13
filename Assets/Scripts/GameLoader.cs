@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using StopwatchTime;
 using CheckpointStorage;
-using UnityEditor.UI;
 using StopwatchTime;
 using CheckpointStorage;
 
